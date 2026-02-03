@@ -49,6 +49,7 @@ final class AutoType extends AbstractType
             'children' => [],
             'children_excluded_' => $this->globalExcludedChildren,
             'children_excluded' => null,
+            'children_included' => null,
             'children_embedded_' => $this->globalEmbeddedChildren,
             'children_embedded' => null,
             'children_groups' => ['Default'],
@@ -66,6 +67,8 @@ final class AutoType extends AbstractType
 
             return $value ?? $options['children_excluded_'];
         });
+
+        $resolver->setAllowedTypes('children_included', 'string[]|null');
 
         $resolver->setAllowedTypes('children_embedded', 'string[]|string|callable|null');
         $resolver->setInfo('children_embedded', 'An array of properties, the * wildcard, or a callable (mixed $current): mixed');

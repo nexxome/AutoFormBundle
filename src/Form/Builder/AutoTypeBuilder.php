@@ -75,6 +75,11 @@ final readonly class AutoTypeBuilder
                 continue;
             }
 
+            if (!empty($formOptions['children_included']) && !\in_array($classProperty, $formOptions['children_included'], true)) {
+                unset($formOptions['children'][$classProperty]);
+                continue;
+            }
+
             $refProperty = $refClass->getProperty($classProperty);
 
             // Gedmo Translatable property? Possible continue early
